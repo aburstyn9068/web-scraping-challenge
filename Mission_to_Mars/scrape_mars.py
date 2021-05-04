@@ -68,24 +68,14 @@ def scrape():
     # Target URL
     url = "https://galaxyfacts-mars.com"
 
-
+    # Create the table
     table = pd.read_html(url)[0]
     table = table[1:]
     table = table.rename(columns={0: "Mars - Earth Comparison", 1: "Mars", 2: "Earth"})
     table = table.set_index("Mars - Earth Comparison")
-    table
 
-    # Get header and row names
-    table_headers = []
-    table_headers.append(table.index.name)
-    table_columns = list(table.columns.values)
-    table_rows = list(table.index.values)
-    for column in table_columns:
-        table_headers.append(column)
-
-    # Convert table to dictionary
-    table_dict = table.to_dict()
-    table_dict
+    # Convert the table to html
+    table = table.to_html()
 
 
     # Visit the astrogeology site (https://marshemispheres.com/) to obtain high resolution 
@@ -147,9 +137,7 @@ def scrape():
         "latest_news_title": news_title,
         "latest_news_paragraph": news_p,
         "featured_image": featured_image_url,
-        "table": table_dict,
-        "headers": table_headers,
-        "rows": table_rows,
+        "table": table,
         "mars_hemispheres": hemisphere_image_urls
     }
 

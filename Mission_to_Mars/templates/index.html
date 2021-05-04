@@ -27,7 +27,7 @@
 
     <div class="row">
       <div class="container col-md-6">
-          <div class="jumbotron">
+          <div class="jumbotron col-md-12">
               <h3 class="display-6">Featured Mars Image</h3>
                 <figure class="figure">
                   <img src="{{ mars.featured_image }}" alt="..." class="col-md-12 img-fluid float-left mr-2 mb-1">
@@ -38,25 +38,7 @@
       <div class="container col-md-6">
           <div class="jumbotron">
               <h3 class="display-6">Mars Facts</h3>
-              <table class="table">
-                <thead>
-                  <tr>
-                    {% for header in mars.headers%}
-                    <th scope="col">{{ header }}</th>
-                    {% endfor %}
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for row in mars.rows %}
-                  <tr>
-                    <th scope="row">{{ row }}</th>
-                    {% for planet in mars.table %}
-                    <td>{{ planet }}</td>
-                    {% endfor %}
-                  </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
+              {{ mars.table | safe }}
           </div>
       </div>
     </div>
