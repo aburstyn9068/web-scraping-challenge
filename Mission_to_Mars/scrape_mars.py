@@ -75,6 +75,14 @@ def scrape():
     table = table.set_index("Mars - Earth Comparison")
     table
 
+    # Get header and row names
+    table_headers = []
+    table_headers.append(table.index.name)
+    table_columns = list(table.columns.values)
+    table_rows = list(table.index.values)
+    for column in table_columns:
+        table_headers.append(column)
+
     # Convert table to dictionary
     table_dict = table.to_dict()
     table_dict
@@ -139,7 +147,9 @@ def scrape():
         "latest_news_title": news_title,
         "latest_news_paragraph": news_p,
         "featured_image": featured_image_url,
-        "mars_facts": table_dict,
+        "table": table_dict,
+        "headers": table_headers,
+        "rows": table_rows,
         "mars_hemispheres": hemisphere_image_urls
     }
 

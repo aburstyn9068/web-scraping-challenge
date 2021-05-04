@@ -17,7 +17,6 @@
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
     </div>
 
-    <!-- Phone Listings -->
     <div class="row" id="news">
       <div class="col-md-6">
         <h2 class="heading">Latest Mars News</h2>
@@ -29,19 +28,62 @@
     <div class="row">
       <div class="container col-md-6">
           <div class="jumbotron">
-              <h2 class="display-6">Featured Mars Image</h2>
+              <h3 class="display-6">Featured Mars Image</h3>
+                <figure class="figure">
                   <img src="{{ mars.featured_image }}" alt="..." class="col-md-12 img-fluid float-left mr-2 mb-1">
+                </figure>
           </div>
       </div>
 
       <div class="container col-md-6">
           <div class="jumbotron">
               <h3 class="display-6">Mars Facts</h3>
+              <table class="table">
+                <thead>
+                  <tr>
+                    {% for header in mars.headers%}
+                    <th scope="col">{{ header }}</th>
+                    {% endfor %}
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for row in mars.rows %}
+                  <tr>
+                    <th scope="row">{{ row }}</th>
+                    {% for planet in mars.table %}
+                    <td>{{ planet }}</td>
+                    {% endfor %}
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
           </div>
       </div>
     </div>
 
   </div>
+
+  <div class="container">
+    <div class="jumbotron">
+        <h2 class="display-4 text-center">Mars Hemispheres</h2>
+        <hr class="my-4">
+        <div class="row">
+          {% for image in mars.mars_hemispheres %}
+          <div class="col-sm-3">
+            <figure class="figure">
+              <img src="{{ image.img_url }}" width="200" height="200" alt="..." class="img-thumbnail">
+              <figcaption class="figure-caption">{{ image.title }}</figcaption>
+            </figure>
+          </div>
+          {% endfor %}
+        </div>
+    </div>
+  </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 </body>
 
 </html>
