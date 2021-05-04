@@ -75,7 +75,7 @@ def scrape():
     table = table.set_index("Mars - Earth Comparison")
 
     # Convert the table to html
-    table = table.to_html()
+    table = table.to_html(classes=["table-bordered", "table", "table-hover"])
 
 
     # Visit the astrogeology site (https://marshemispheres.com/) to obtain high resolution 
